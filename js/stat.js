@@ -1,42 +1,41 @@
 'use strict';
 
 window.renderStatistics = function (ctx, names, times) {
-  var cloudInitialX = 100,
-      cloudInitialY = 10,
-      cloudWidth = 420,
-      cloudHeight = 270,
-      cloudColor = 'rgba(255, 255, 255, 1)',
-      cloudShadowColor = 'rgba(0, 0, 0, 0.7)',
-      cloudTextColor = 'rgba(0, 0, 0, 1)',
-      cloudTextFont = '16px PT Mono',
+  var cloudInitialX = 100;
+  var cloudInitialY = 10;
+  var cloudWidth = 420;
+  var cloudHeight = 270;
+  var cloudColor = 'rgba(255, 255, 255, 1)';
+  var cloudShadowColor = 'rgba(0, 0, 0, 0.7)';
+  var cloudTextColor = 'rgba(0, 0, 0, 1)';
+  var cloudTextFont = '16px PT Mono';
 
-      textInitialX = 120,
-      textInitialY = 40,
-      textStepY = 20,
+  var textInitialX = 120;
+  var textInitialY = 40;
+  var textStepY = 20;
 
-      maxTime = -1,
-      maxTimeIndex = -1,
+  var maxTime = -1;
 
-      histogramHeight = 150,
-      histogramStep,
-      histogramBarWidth = 40,
-      histogramBarIndent = histogramBarWidth + 50,
-      histogramTextBottomIndent = 20,
-      histogramTextTopIndent = 10,
-      histogramInitialX = 140,
-      histogramInitialY = 245,
-      histogramYourBarColor = 'rgba(255, 0, 0, 1)',
+  var histogramHeight = 150;
+  var histogramStep;
+  var histogramBarWidth = 40;
+  var histogramBarIndent = histogramBarWidth + 50;
+  var histogramTextBottomIndent = 20;
+  var histogramTextTopIndent = 10;
+  var histogramInitialX = 140;
+  var histogramInitialY = 245;
+  var histogramYourBarColor = 'rgba(255, 0, 0, 1)';
 
-      i,
+  var i;
 
-      setAnotherPlayerBarColor = function () {
-        var transparency = 0;
-        while (transparency < 0.3) {
-          transparency = Math.random();
-        }
-        var barColor = 'rgba(0, 0, 255, ' + transparency + ')';
-        return barColor;
-      };
+  var setAnotherPlayerBarColor = function () {
+    var transparency = 0;
+    while (transparency < 0.3) {
+      transparency = Math.random();
+    }
+    var barColor = 'rgba(0, 0, 255, ' + transparency + ')';
+    return barColor;
+  };
 
   ctx.fillStyle = cloudShadowColor;
   ctx.fillRect(cloudInitialX + 10, cloudInitialY + 10, cloudWidth, cloudHeight);
@@ -52,14 +51,13 @@ window.renderStatistics = function (ctx, names, times) {
   for (i = 0; i < times.length; i++) {
     if (times[i] > maxTime) {
       maxTime = times[i];
-      maxTimeIndex = i;
     }
   }
 
   histogramStep = histogramHeight / maxTime;
 
-  for(i = 0; i < times.length; i++) {
-    if (names[i] === "Вы") {
+  for (i = 0; i < times.length; i++) {
+    if (names[i] === 'Вы') {
       ctx.fillStyle = histogramYourBarColor;
     } else {
       ctx.fillStyle = setAnotherPlayerBarColor();
