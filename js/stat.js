@@ -40,8 +40,6 @@ window.renderStatistics = function (ctx, names, times) {
   maxTime = getMaxValueInArray(times);
   histogramStep = histogramHeight / maxTime;
 
-
-
   for (i = 0; i < times.length; i++) {
     histogramBarInitialX = histogramInitialX + histogramBarIndent * i;
     histogramBarHeight = -times[i] * histogramStep;
@@ -104,7 +102,6 @@ function drawRectangle(context, color, x, y, width, height) {
 
 // ПОСТРОЧНАЯ ОТРИСОВКА ТЕКСТА
 function drawTextArea(context, color, text, x, y, maxWidth, yIndent) {
-
   var words = text.split(' ');
   var countWords = words.length;
   var string = '';
