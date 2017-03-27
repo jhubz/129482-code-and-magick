@@ -30,12 +30,12 @@ window.renderStatistics = function (ctx, names, times) {
 
   var i;
 
-  drawRectangle (ctx, cloudShadowColor, cloudInitialX + 10, cloudInitialY + 10, cloudWidth, cloudHeight);
-  drawRectangle (ctx, cloudColor, cloudInitialX, cloudInitialY, cloudWidth, cloudHeight);
+  drawRectangle(ctx, cloudShadowColor, cloudInitialX + 10, cloudInitialY + 10, cloudWidth, cloudHeight);
+  drawRectangle(ctx, cloudColor, cloudInitialX, cloudInitialY, cloudWidth, cloudHeight);
 
   ctx.font = cloudTextFont;
 
-  drawTextArea (ctx, cloudTextColor, 'Ура, вы победили! Список результатов:', textInitialX, textInitialY, textWidth, textStepY);
+  drawTextArea(ctx, cloudTextColor, 'Ура, вы победили! Список результатов:', textInitialX, textInitialY, textWidth, textStepY);
 
   maxTime = getMaxValueInArray(times);
   histogramStep = histogramHeight / maxTime;
@@ -47,13 +47,13 @@ window.renderStatistics = function (ctx, names, times) {
     histogramBarHeight = -times[i] * histogramStep;
 
     histogramBarColor = (names[i] === 'Вы') ? histogramYourBarColor : getRandomBlueColor();
-    drawHistogramBar (ctx, histogramBarColor, histogramBarInitialX, histogramInitialY, histogramBarWidth, histogramBarHeight, times[i].toFixed(), names[i]);
+    drawHistogramBar(ctx, histogramBarColor, histogramBarInitialX, histogramInitialY, histogramBarWidth, histogramBarHeight, times[i].toFixed(), names[i]);
   }
 };
 
 
-//ПОЛУЧЕНИЕ СЛУЧАЙНОГО СИНЕГО ЦВЕТА
-function getRandomBlueColor () {
+// ПОЛУЧЕНИЕ СЛУЧАЙНОГО СИНЕГО ЦВЕТА
+function getRandomBlueColor() {
   var transparency;
   var barColor;
   var minTransparency = 0.3;
@@ -65,8 +65,8 @@ function getRandomBlueColor () {
   return barColor;
 }
 
-//ПОЛУЧЕНИЕ МАКСИМАЛЬНОГО ЗНАЧЕНИЯ ИЗ МАССИВА
-function getMaxValueInArray (array) {
+// ПОЛУЧЕНИЕ МАКСИМАЛЬНОГО ЗНАЧЕНИЯ ИЗ МАССИВА
+function getMaxValueInArray(array) {
   var maxValue = -1;
   var i;
 
@@ -79,53 +79,53 @@ function getMaxValueInArray (array) {
   return maxValue;
 }
 
-//ОТРИСОВКА СТЛОБИКА ГИСТОГРАММЫ ЗАДАННОГО ЦВЕТА
-function drawHistogramBar (context, barColor, x, y, width, height, time, name) {
+// ОТРИСОВКА СТЛОБИКА ГИСТОГРАММЫ ЗАДАННОГО ЦВЕТА
+function drawHistogramBar(context, barColor, x, y, width, height, time, name) {
   var histogramTextTopIndent = 10;
   var histogramTextBottomIndent = 20;
   var textColor = 'rgba(0, 0, 0, 1)';
 
-  drawRectangle (context, barColor, x, y, width, height);
-  drawText (context, textColor, time, x, y + height - histogramTextTopIndent);
-  drawText (context, textColor, name, x, y + histogramTextBottomIndent);
+  drawRectangle(context, barColor, x, y, width, height);
+  drawText(context, textColor, time, x, y + height - histogramTextTopIndent);
+  drawText(context, textColor, name, x, y + histogramTextBottomIndent);
 }
 
-//ОТРИСОВКА ТЕКСТА ЗАДАННОГО ЦВЕТА
-function drawText (context, color, text, x, y) {
+// ОТРИСОВКА ТЕКСТА ЗАДАННОГО ЦВЕТА
+function drawText(context, color, text, x, y) {
   context.fillStyle = color;
   context.fillText(text, x, y);
 }
 
-//ОТРИСОВКА ПРЯМОУГОЛЬНИКА ЗАДАННОГО ЦВЕТА
-function drawRectangle (context, color, x, y, width, height) {
+// ОТРИСОВКА ПРЯМОУГОЛЬНИКА ЗАДАННОГО ЦВЕТА
+function drawRectangle(context, color, x, y, width, height) {
   context.fillStyle = color;
   context.fillRect(x, y, width, height);
 }
 
-//ПОСТРОЧНАЯ ОТРИСОВКА ТЕКСТА
-function drawTextArea (context, color, text, x, y, maxWidth, yIndent)
-  {
-    var words = text.split(" ");
-    var countWords = words.length;
-    var string = "";
-    var bufferString;
-    var bufferStringWidth;
+// ПОСТРОЧНАЯ ОТРИСОВКА ТЕКСТА
+function drawTextArea(context, color, text, x, y, maxWidth, yIndent) {
 
-    context.fillStyle = color;
+  var words = text.split(' ');
+  var countWords = words.length;
+  var string = '';
+  var bufferString;
+  var bufferStringWidth;
 
-    for (var i = 0; i < countWords; i++) {
-      bufferString = string + words[i] + " ";
-      bufferStringWidth = context.measureText(bufferString).width;
+  context.fillStyle = color;
 
-      if (bufferStringWidth > maxWidth) {
-        context.fillText(string, x, y);
-        string = words[i] + " ";
-        y += yIndent;
-      } else {
-        string = bufferString;
-      }
+  for (var i = 0; i < countWords; i++) {
+    bufferString = string + words[i] + ' ';
+    bufferStringWidth = context.measureText(bufferString).width;
+
+    if (bufferStringWidth > maxWidth) {
+      context.fillText(string, x, y);
+      string = words[i] + ' ';
+      y += yIndent;
+    } else {
+      string = bufferString;
     }
-
-    context.fillText(string, x, y);
   }
+
+  context.fillText(string, x, y);
+}
 
