@@ -59,7 +59,7 @@ function createWizard() {
     name: names[randomName] + ' ' + surnames[randomSurname],
     coatColor: coatColors[randomcoatColor],
     eyesColor: eyesColors[randomeyesColor],
-  }
+  };
 
   return wizard;
 }
