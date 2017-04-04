@@ -4,10 +4,7 @@ var setupSimilarList = document.querySelector('.setup-similar-list');
 
 // ПОЛУЧЕНИЕ СЛУЧАЙНОГО ЦЕЛОГО ЧИСЛА ИЗ ЗАДАННОГО ДИАПАЗОНА
 function getRandomIntNumber(min, max) {
-  var randomNumber = Math.random() * (max + 1 - min) + min;
-  randomNumber = Math.floor(randomNumber);
-
-  return randomNumber;
+  return Math.floor(Math.random() * (max + 1 - min) + min);
 }
 
 function createWizard() {
@@ -73,9 +70,10 @@ function createSimilarWizardMark(wizard) {
   var similarWizardCoatColor = similarWizardElement.querySelector('.wizard-coat');
   var similarWizardEyeColor = similarWizardElement.querySelector('.wizard-eyes');
 
+  similarWizardName.style.width = 150 + 'px';
   similarWizardName.textContent = wizard.name;
-  similarWizardCoatColor.setAttribute('style', 'fill: ' + wizard.coatColor + ';');
-  similarWizardEyeColor.setAttribute('style', 'fill: ' + wizard.eyesColor + ';');
+  similarWizardCoatColor.style.fill = wizard.coatColor;
+  similarWizardEyeColor.style.fill = wizard.eyesColor;
 
 
   return similarWizardElement;
@@ -83,17 +81,11 @@ function createSimilarWizardMark(wizard) {
 
 // СОЗДАНИЕ МАССИВА РАЗМЕТОК ПОХОЖИХ ВОЛШЕБНИКОВ
 function createSimilarWizardMarks() {
-  var similarWizard;
-  var similarWizardMark;
   var similarWizardsCount = 4;
   var fragment = document.createDocumentFragment();
 
-  var i;
-
-  for (i = 0; i < similarWizardsCount; i++) {
-    similarWizard = createWizard();
-    similarWizardMark = createSimilarWizardMark(similarWizard);
-    fragment.appendChild(similarWizardMark);
+  for (var i = 0; i < similarWizardsCount; i++) {
+    fragment.appendChild(createSimilarWizardMark(createWizard()));
   }
 
   return fragment;
