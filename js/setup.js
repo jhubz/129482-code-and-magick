@@ -71,6 +71,7 @@ function createSimilarWizardMark(wizard) {
   var similarWizardEyeColor = similarWizardElement.querySelector('.wizard-eyes');
 
   similarWizardName.style.width = 150 + 'px';
+  similarWizardName.style.wordWrap = 'break-word';
   similarWizardName.textContent = wizard.name;
   similarWizardCoatColor.style.fill = wizard.coatColor;
   similarWizardEyeColor.style.fill = wizard.eyesColor;
